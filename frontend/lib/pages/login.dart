@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
       return;
     }
 
-    final url = Uri.parse("/login");
+    final url = Uri.parse("http://localhost:8000/api/auth/login");
     final response = await http.post(url,
         body: jsonEncode({'email': _email, 'password': _password}),
         headers: {'Content-Type': 'application/json'});

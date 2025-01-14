@@ -24,8 +24,7 @@ class _SignupState extends State<Signup> {
     }
 
     var res = await http.post(
-        Uri.parse(
-            "/register"),
+        Uri.parse("http://localhost:8000/api/auth/register"),
         body:
             jsonEncode({'name': _name, 'email': _email, 'password': _password}),
         headers: {'Content-Type': 'application/json'});
