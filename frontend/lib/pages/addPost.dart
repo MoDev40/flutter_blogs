@@ -33,10 +33,10 @@ class _AddPostState extends State<AddPost> {
         body: jsonEncode(
             {'title': title.text, 'content': content.text, 'tags': tags.text}),
       );
-      if (res.statusCode == 201 || res.statusCode == 200) {
+      if (res.statusCode == 201) {
         post.fetchPosts(auth.getToken);
         Get.snackbar("Post", "added successfully");
-        Get.back();
+        Navigator.pop(context);
       }
     } catch (e) {
       Get.snackbar("Error", "Error adding Post");
