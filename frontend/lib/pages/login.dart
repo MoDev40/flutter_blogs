@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:frontend/controllers/authController.dart';
 import 'package:frontend/layout.dart';
+import 'package:frontend/models/User.dart';
 import 'package:frontend/pages/signup.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -15,8 +16,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String _email = "";
-  String _password = "";
+  String _email = "m@gmail.com";
+  String _password = "12345";
   AuthController auth = Get.find<AuthController>();
 
   Future<void> _login() async {
@@ -34,7 +35,12 @@ class _LoginState extends State<Login> {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       auth.setToken(data['token']);
-      Get.to(const Layout());
+      auth.setUser(
+        User.fromJson(
+          data['user'],
+        ),
+      );
+      Get.offAll(const Layout());
     } else {
       Get.snackbar("Error", "Error while login");
     }

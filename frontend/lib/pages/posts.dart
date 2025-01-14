@@ -28,18 +28,31 @@ class _PostsState extends State<Posts> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.blue[100],
+        foregroundColor: Colors.white,
+        title: const Text("Blogs"),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.person,
+              size: 25,
+            ),
+            onPressed: () {},
+          ),
+        ],
+      ),
       body: Obx(
         () => ListView.builder(
           itemBuilder: (context, index) {
             var post = posts.posts[index];
             return ListTile(
-              leading: const Icon(Icons.inventory),
               title: Text(
                 post.title,
                 style: const TextStyle(fontSize: 16),
               ),
               subtitle: Text(post.createdAt.split("T")[0]),
-              trailing: post.user == "id"
+              trailing: post.user == auth.user?.id
                   ? IconButton(
                       onPressed: () {},
                       icon: const Icon(
@@ -56,6 +69,7 @@ class _PostsState extends State<Posts> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue[100],
         onPressed: () {},
         child: const Text("+"),
       ),
