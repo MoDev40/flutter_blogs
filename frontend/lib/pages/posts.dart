@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/controllers/authController.dart';
 import 'package:frontend/controllers/postController.dart';
+import 'package:frontend/pages/addPost.dart';
+import 'package:frontend/pages/deletePost.dart';
 import 'package:get/get.dart';
 
 class Posts extends StatefulWidget {
@@ -53,13 +55,7 @@ class _PostsState extends State<Posts> {
               ),
               subtitle: Text(post.createdAt.split("T")[0]),
               trailing: post.user == auth.user?.id
-                  ? IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      ),
-                    )
+                  ? DeletePost(id: post.id)
                   : const Text(""),
               onTap: () {},
             );
@@ -70,7 +66,9 @@ class _PostsState extends State<Posts> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue[100],
-        onPressed: () {},
+        onPressed: () {
+          Get.to(const AddPost());
+        },
         child: const Text("+"),
       ),
     );
