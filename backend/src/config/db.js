@@ -1,8 +1,8 @@
 import chalk from "chalk";
 import { connect } from "mongoose";
-import { dbUrl } from "./config.js";
+import { dbUrl, dbName } from "./config.js";
 export const connectDB = async () => {
-  connect(dbUrl)
+  connect(dbUrl, { dbName })
     .then(() => {
       console.log(`${chalk.green.bold("Connected")} to the database`);
     })
