@@ -32,7 +32,7 @@ class _SignupState extends State<Signup> {
 
     if (res.statusCode == 201) {
       Get.snackbar("User", "Registered successfully");
-      Get.to(Login());
+      Get.to(const Login());
     } else {
       Get.snackbar("Error", "Try Again");
     }
