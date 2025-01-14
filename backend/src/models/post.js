@@ -5,9 +5,6 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
-  coverUrl: {
-    type: String,
-  },
   tags: {
     type: String,
   },

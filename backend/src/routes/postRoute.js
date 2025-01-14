@@ -7,7 +7,7 @@ const router = express.Router();
 // create post
 router.post("/create", auth, async (req, res) => {
   try {
-    const { title, coverUrl, tags, content } = req.body;
+    const { title, tags, content } = req.body;
 
     const user = req.user;
 
@@ -17,7 +17,7 @@ router.post("/create", auth, async (req, res) => {
         .json({ message: "Title and content are required." });
     }
 
-    const post = new Post({ title, coverUrl, tags, content, user });
+    const post = new Post({ title, tags, content, user });
     await post.save();
 
     res.status(201).json({ message: "Post created successfully" });
