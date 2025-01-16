@@ -3,6 +3,7 @@ import 'package:frontend/controllers/authController.dart';
 import 'package:frontend/controllers/postController.dart';
 import 'package:frontend/pages/addPost.dart';
 import 'package:frontend/pages/deletePost.dart';
+import 'package:frontend/pages/post.dart';
 import 'package:get/get.dart';
 
 class Posts extends StatefulWidget {
@@ -57,7 +58,11 @@ class _PostsState extends State<Posts> {
               trailing: post.user == auth.user?.id
                   ? DeletePost(id: post.id)
                   : const Text(""),
-              onTap: () {},
+              onTap: () {
+                Get.to(
+                  PostDetails(post: post),
+                );
+              },
             );
           },
           itemCount: posts.posts.length,
