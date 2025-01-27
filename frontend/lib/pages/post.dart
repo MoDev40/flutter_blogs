@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/controllers/authController.dart';
 import 'package:frontend/models/Post.dart';
+import 'package:get/get.dart';
 
 class PostDetails extends StatelessWidget {
   Post post;
   PostDetails({super.key, required this.post});
 
+  AuthController auth = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,16 +19,17 @@ class PostDetails extends StatelessWidget {
               post.tags,
               style: TextStyle(color: Colors.blue[100]),
             ),
-            trailing: Text("Published at ${post.createdAt.split("T")[0]}"),
           ),
           Padding(
             padding: const EdgeInsets.all(28.0),
             child: SelectableText(post.content),
           ),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text("Edit"),
-          )
+          post.user == auth.user?.id
+              ? ElevatedButton(
+                  onPressed: () {},
+                  child: const Text("Edit"),
+                )
+              : Text("Published at ${post.createdAt.split("T")[0]}")
         ],
       ),
     );
