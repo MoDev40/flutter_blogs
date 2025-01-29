@@ -4,6 +4,7 @@ import 'package:frontend/controllers/postController.dart';
 import 'package:frontend/pages/addPost.dart';
 import 'package:frontend/pages/deletePost.dart';
 import 'package:frontend/pages/post.dart';
+import 'package:frontend/pages/profile.dart';
 import 'package:get/get.dart';
 
 class Posts extends StatefulWidget {
@@ -41,7 +42,9 @@ class _PostsState extends State<Posts> {
               Icons.person,
               size: 25,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Get.to(Profile());
+            },
           ),
         ],
       ),

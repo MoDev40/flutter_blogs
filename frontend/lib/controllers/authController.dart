@@ -17,4 +17,8 @@ class AuthController extends GetxController {
   void setToken(String value) {
     token.value = value;
   }
+
+  void logout() {
+    token.value = "";
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/controllers/authController.dart';
 import 'package:frontend/models/Post.dart';
+import 'package:frontend/pages/editPost.dart';
 import 'package:get/get.dart';
 
 class PostDetails extends StatelessWidget {
@@ -26,7 +27,11 @@ class PostDetails extends StatelessWidget {
           ),
           post.user == auth.user?.id
               ? ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(
+                      EditPost(post: post),
+                    );
+                  },
                   child: const Text("Edit"),
                 )
               : Text("Published at ${post.createdAt.split("T")[0]}")
