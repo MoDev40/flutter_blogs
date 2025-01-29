@@ -23,22 +23,20 @@ class Profile extends StatelessWidget {
             const SizedBox(height: 10),
             Text(auth.user!.email),
             const SizedBox(height: 20),
-            Obx(
-              () => SizedBox(
-                width: 300,
-                child: TextButton(
-                  onPressed: () async {
-                    auth.logout();
-                    Get.offAll(const Login());
-                  },
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.red),
-                    foregroundColor: WidgetStatePropertyAll(Colors.white),
-                  ),
-                  child: const Text("Logout"),
+            SizedBox(
+              width: 300,
+              child: TextButton(
+                onPressed: () async {
+                  auth.logout();
+                  Get.offAll(const Login());
+                },
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.red),
+                  foregroundColor: WidgetStatePropertyAll(Colors.white),
                 ),
+                child: const Text("Logout"),
               ),
-            )
+            ),
           ],
         ),
       ),

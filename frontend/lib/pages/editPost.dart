@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:frontend/controllers/authController.dart';
 import 'package:frontend/controllers/postController.dart';
+import 'package:frontend/layout.dart';
 import 'package:frontend/models/Post.dart';
+import 'package:frontend/pages/posts.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -25,14 +27,14 @@ class _EditPostState extends State<EditPost> {
   TextEditingController content = TextEditingController();
   TextEditingController tags = TextEditingController();
 
-  Future<void> addPost() async {
+  Future<void> editPost() async {
     setState(() {
       isLoading = true;
     });
     try {
       var url =
           Uri.parse("http://localhost:8000/api/posts/edit/${widget.post.id}");
-      var res = await http.post(
+      var res = await http.put(
         url,
         headers: {
           'Content-Type': 'application/json',
@@ -41,13 +43,13 @@ class _EditPostState extends State<EditPost> {
         body: jsonEncode(
             {'title': title.text, 'content': content.text, 'tags': tags.text}),
       );
-      if (res.statusCode == 201) {
+      if (res.statusCode == 200) {
         post.fetchPosts(auth.getToken);
         Get.snackbar("Post", "Updated successfully");
-        Navigator.pop(context);
+        Get.offAll(const Layout());
       }
     } catch (e) {
-      Get.snackbar("Error", "Error adding Post");
+      Get.snackbar("Error", "Error editing Post");
     } finally {
       setState(() {
         isLoading = false;
@@ -126,7 +128,7 @@ class _EditPostState extends State<EditPost> {
                   backgroundColor: Colors.blue[100],
                   foregroundColor: Colors.white,
                 ),
-                onPressed: addPost,
+                onPressed: editPost,
                 child: Text(isLoading ? "Loading...." : "Edit"),
               ),
             ),
